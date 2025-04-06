@@ -1,0 +1,320 @@
+/* Global Styles */
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("/Image/bg2.gif") no-repeat center center fixed;
+    background-size: cover;
+    z-index: -1; /* Ensure it is behind all other content */
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+/* Navigation Bar Styles */
+.navbar {
+    background-color: #ffffff;
+    opacity: 95%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2d9cdb;
+    margin-right: auto;
+    padding-left: 20px;
+}
+
+.navbar .nav-links {
+    display: flex;
+    gap: 20px;
+    margin-right: 40px;
+}
+
+.navbar .nav-links a {
+    text-decoration: none;
+    font-size: 16px;
+    color: #333333;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-links a:hover {
+    color: #2d9cdb;
+}
+/* Container and Weather Card */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-top: 25%; /* Adjust for fixed navbar */
+    padding: 20px;
+    color: rgb(255, 255, 255);
+    font-family: 'Poppins', sans-serif;
+
+    /* Translucent background with rounded corners */
+    background-color: rgba(145, 145, 145, 0.5); /* Semi-transparent white */
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Optional shadow for depth */
+    max-width: 90%;
+}
+.p{
+    color: white;
+}
+.weather-card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    text-align: center;
+    width: 350px;
+    max-width: 100%;
+}
+
+.weather-card h1 {
+    font-size: 24px;
+    color: #2d9cdb;
+    margin-bottom: 20px;
+}
+
+.weather-card h3 {
+    font-size: 18px;
+    color: #333333;
+    margin-bottom: 20px;
+}
+
+/* Input and Button Styles */
+input[type="text"] {
+    width: 80%;
+    padding: 10px;
+    margin-right: 5px;
+    border: 2px solid #2d9cdb;
+    border-radius: 25px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-color: #0b7dda;
+}
+
+button {
+    background-color: #2d9cdb;
+    color: white;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0b7dda;
+}
+
+/* Weather Info Styles */
+#weather-info {
+    margin-top: 20px;
+    display: none; /* Initially hidden */
+}
+
+#weather-info.show {
+    display: block; /* Show when data is available */
+}
+
+#weather-icon {
+    width: 100px;
+    height: 100px;
+    margin: 10px 0;
+}
+
+p {
+    font-size: 16px;
+    color: #ffffff;
+    margin: 5px 0;
+}
+
+p#temperature {
+    font-size: 22px;
+    font-weight: bold;
+    color: #e63946;
+}
+
+p#description {
+    font-size: 18px;
+    font-style: italic;
+    color: #457b9d;
+}
+
+p#wind-speed {
+    font-size: 16px;
+    color: #2d9cdb;
+}
+#profileLink {
+    display: none; /* Default to hidden, shown by JS if logged in */
+}
+
+#loginLink {
+    color: blue;
+    font-weight: bold;
+    text-decoration: none;
+    padding-right: 30px;
+}
+
+#loginLink a:hover {
+    background-color: #ff0606;
+}
+.profile-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.profile-icon img {
+    width: 60px;
+    height: 60px;
+    padding-right: 40px;
+}
+.white{
+    display: flex;
+    justify-content: end;
+    width: 100%;
+}
+
+footer {
+    background-color: #f8f8f8;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    margin-top: 10%;
+}
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.footer-section {
+    margin: 10px;
+    width: 200px;
+}
+.footer-section h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #333;
+}
+.footer-section p {
+    color: #555;
+    font-size: 0.9em;
+}
+.footer-buttons {
+    margin-top: 20px;
+}
+.footer-buttons a {
+    text-decoration: none;
+    color: #007bff;
+    margin: 0 15px;
+    font-size: 1em;
+}
+.footer-buttons a:hover {
+    text-decoration: underline;
+}
+
+/* Animation */
+
+@keyframes scrollLeft {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.carousel-container {
+    color: rgb(201, 201, 201);
+    overflow: hidden;
+    width: 100%;
+    height: 335px; 
+    margin-top: 20%;
+    background: var(--background);
+    backdrop-filter: blur(0.5rem);
+    border-radius: 1rem;
+}
+.carousel-container:hover{
+    color: white;
+}
+.carousel {
+    display: flex;
+    gap: 4rem;
+    animation: scrollCarousel 20s linear infinite;
+}
+
+.carousel-item {
+    padding: 0.5rem;
+    min-width: 400px;
+    margin-right: 20px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 5%;
+}
+
+.carousel-item h4 {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 1.1em;
+    margin: 0;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+
+.carousel-item:hover h4 {
+    opacity: 1;
+}
+
+
+@keyframes scrollCarousel {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}

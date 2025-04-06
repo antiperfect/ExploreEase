@@ -1,0 +1,206 @@
+/* styles.css */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+#banner {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+#banner img {
+    width: 100%;
+    height: auto;
+}
+
+#banner h2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#places-to-go {
+    padding: 20px;
+}
+
+#places-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.place {
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: calc(33.333% - 20px);
+    box-sizing: border-box;
+}
+
+.place img {
+    width: 100%;
+    height: auto;
+}
+.navbar {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2d9cdb;
+    margin-right: auto;
+    padding-left: 20px;
+}
+
+.navbar .nav-links {
+    display: flex;
+    gap: 20px;
+    margin-right: 40px;
+}
+
+.navbar .nav-links a {
+    text-decoration: none;
+    font-size: 16px;
+    color: #333333;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-links a:hover {
+    color: #2d9cdb;
+}
+.auth-links {
+    display: flex;
+    align-items: center;
+}
+
+#profileLink {
+    display: none; /* Default to hidden, shown by JS if logged in */
+}
+
+#loginLink {
+    color: blue;
+    font-weight: bold;
+    text-decoration: none;
+    padding-right: 30px;
+}
+
+#loginLink a:hover {
+    background-color: #ff0606;
+}
+.profile-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.profile-icon img {
+    width: 60px;
+    height: 60px;
+    padding-right: 40px;
+}
+/* Tourist Spots List */
+#spots-list ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    color: black;
+    font-family: 'Poppins', sans-serif;
+}
+
+#spots-list li {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    margin: 20px;
+    padding: 15px;
+    width: 250px;
+    transition: transform 0.3s, background 0.3s;
+}
+
+#spots-list li:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.4);
+}
+
+#spots-list img {
+    border-radius: 10px;
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Background Animation */
+@keyframes backgroundChange {
+    0% {
+        background-image: url('https://example.com/bg1.jpg'); /* Default background */
+    }
+    50% {
+        background-image: url('https://example.com/bg2.jpg');
+    }
+    100% {
+        background-image: url('https://example.com/bg3.jpg');
+    }
+}
+
+/* Loading Text */
+#spots-list {
+    font-size: 24px;
+    color: #ddd;
+    animation: pulse 2s infinite;
+}
+
+.container{
+    padding-top: 5rem;
+}
+
+.container h1 {
+    background-color: rgba(0, 0, 0, 0.5); /* Black with 50% transparency */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}

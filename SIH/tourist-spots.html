@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="ts_style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>Tourist Spots - ExploreEase</title>
+    <style>
+        /* Modal styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            z-index: 1000; /* Above everything else */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7); /* Black background with transparency */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            width: 80%;
+            max-width: 600px;
+            z-index: 1001;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h2 {
+            margin: 0;
+        }
+
+        .modal-close {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        /* Blur the background when modal is active */
+        .blurred {
+            filter: blur(5px);
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo"><img src="/Image/logo.png" width="100"></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="weather.html">Weather</a>
+            <a href="traffic.html">Traffic</a>
+            <a href="tourist-spots.html">Tourist Spots</a>
+        </div>
+        <div class="auth-links"></div>
+        <div id="profileLink" class="profile-icon">
+            <img class="profile-icon" src="/Image/profile-icon.png" alt="Profile Image" width="50">
+        </div>
+        <a id="loginLink" href="login.html">Login</a>
+    </div>
+    <div class="container">
+        <h1>Tourist Spots in Your City</h1>
+        <div id="spots-list">Loading tourist spots...</div>
+    </div>
+
+    <!-- Modal for displaying spot details -->
+    <div id="spotModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="spotName"></h2>
+                <button class="modal-close" onclick="closeModal()">Close</button>
+            </div>
+            <div id="spotDetails"></div>
+        </div>
+    </div>
+
+    <script src="navbar.js"></script>
+    <script>
+        const apiKey = '5ae2e3f221c38a28845f05b6a45ec3c9983597378ba9daa9dd85fb39'; // Replace with your OpenTripMap API key
+        const unsplashApiKey = 'o30WeHIXeHKI6WA5HrzbT-mTm00Enf95-3cyH9jKTDw'; // Replace with your Unsplash API key
+        const cityName = localStorage.getItem('cityName') || 'Raipur';
+
+        // Function to change background image based on city
+        function changeBackgroundImage(city) {
+            fetch(`https://api.unsplash.com/search/photos?query=${encodeURIComponent(city)}&client_id=${unsplashApiKey}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.results.length > 0) {
+                        const imageUrl = data.results[0].urls.full;
+                        document.body.style.backgroundImage = `url(${imageUrl})`;
+                    } else {
+                        document.body.style.backgroundImage = '';
+                    }
+                })
+                .catch(() => {
+                    document.body.style.backgroundImage = '';
+                });
+        }
+
+        // Function to fetch tourist spots
+        function fetchTouristSpots(city) {
+            if (!city) {
+                city = 'Raipur'; // Fallback to Raipur if city is empty
+            }
+
+            // Get coordinates of the city using OpenTripMap's geoname API
+            fetch(`https://api.opentripmap.com/0.1/en/places/geoname?name=${encodeURIComponent(city)}&apikey=${apiKey}`)
+                .then(response => response.json())
+                .then(data => {
+                    const lat = data.lat;
+                    const lon = data.lon;
+
+                    // Fetch tourist spots using OpenTripMap's places API
+                    return fetch(`https://api.opentripmap.com/0.1/en/places/radius?radius=5000&lon=${lon}&lat=${lat}&kinds=tourist_object&rate=3&apikey=${apiKey}`);
+                })
+                .then(response => response.json())
+                .then(async data => {
+                    const spotsList = document.getElementById('spots-list');
+                    const places = data.features;
+
+                    if (places.length > 0) {
+                        let listItems = '';
+                        for (const place of places) {
+                            const spotName = place.properties.name;
+                            const spotId = place.properties.xid; // Unique ID for each place
+                            const imgSrc = await fetchUnsplashImage(spotName);
+
+                            // Create a clickable list item for each tourist spot
+                            listItems += `
+                                <li onclick="fetchSpotDetails('${spotId}', '${spotName}')">
+                                    <h3>${spotName}</h3>
+                                    <img src="${imgSrc}" alt="${spotName}" width="150" height="100">
+                                </li>`;
+                        }
+                        spotsList.innerHTML = `<ul>${listItems}</ul>`;
+                    } else {
+                        spotsList.innerText = 'No tourist spots found.';
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('spots-list').innerText = `Error: ${error.message}`;
+                });
+        }
+
+        // Fetch Unsplash image for a tourist spot
+        function fetchUnsplashImage(spotName) {
+            return fetch(`https://api.unsplash.com/search/photos?query=${encodeURIComponent(spotName)}&client_id=${unsplashApiKey}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.results.length > 0) {
+                        return data.results[0].urls.small;
+                    }
+                    return '';
+                })
+                .catch(() => '');
+        }
+
+        // Fetch and display detailed information for a tourist spot
+        function fetchSpotDetails(spotId, spotName) {
+            fetch(`https://api.opentripmap.com/0.1/en/places/xid/${spotId}?apikey=${apiKey}`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('spotName').textContent = spotName;
+                    const spotDetails = document.getElementById('spotDetails');
+                    spotDetails.innerHTML = `
+                        <p><strong>Description:</strong> ${data.wikipedia_extracts ? data.wikipedia_extracts.text : 'No description available.'}</p>
+                        <p><strong>Location:</strong> ${data.address ? data.address.city + ', ' + data.address.country : 'No location available.'}</p>
+                        <p><strong>More Info:</strong> <a href="${data.otm}" target="_blank">OpenTripMap</a></p>`;
+
+                    // Show the modal and blur the background
+                    document.getElementById('spotModal').style.display = 'flex';
+                    document.querySelector('.container').classList.add('blurred');
+                })
+                .catch(error => {
+                    document.getElementById('spotDetails').innerText = `Error: ${error.message}`;
+                });
+        }
+
+        // Close modal function
+        function closeModal() {
+            document.getElementById('spotModal').style.display = 'none';
+            document.querySelector('.container').classList.remove('blurred');
+        }
+
+        // Call functions on page load
+        changeBackgroundImage(cityName);
+        fetchTouristSpots(cityName);
+    </script>
+    <script src="update-profile-image.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="w_style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>Weather - ExploreEase</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo"><img src="/Image/logo.png" width="100"></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="weather.html">Weather</a>
+            <a href="traffic.html">Traffic</a>
+            <a href="tourist-spots.html">Tourist Spots</a>
+        </div>
+        <div class="auth-links"></div>
+            <div id="profileLink" class="profile-icon">
+                <img class="profile-icon" src="/Image/profile-icon.png" alt="Profile Image" width="50">
+            </div>
+            <a id="loginLink" href="login.html">Login</a>
+        </div>
+    </div>
+    <div class="container">
+        <div id="show"></div>
+      </div>
+      <script src="navbar.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment.min.js"></script>
+    <script src="w_script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cityName = localStorage.getItem('cityName');
+            if (cityName) {
+                document.getElementById('city-name').textContent = `City: ${cityName}`;
+                // Use the cityName to fetch weather data
+                weatherFn(cityName); 
+            } else {
+                alert('No city name found. Please go back to the Home page and enter a city name.');
+            }
+        });
+    </script>
+    <script src="update-profile-image.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="p_style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <title>Profile - ExploreEase</title>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo"><img src="/Image/logo.png" width="100" alt="Logo"></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="weather.html">Weather</a>
+            <a href="traffic.html">Traffic</a>
+            <a href="tourist-spots.html">Tourist Spots</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>User Profile</h1>
+        <div id="profileInfo"></div>
+        
+        <div id="profileImageSection">
+            <h3>Profile Image</h3>
+            <img id="profileImage" src="/Image/profile-icon.png" alt="Profile Image" width="150">
+            <input type="file" id="imageUpload" accept="image/*">
+            <button id="confirmButton">Confirm</button>
+        </div>
+
+        <button id="logoutButton">Log Out</button>
+    </div>
+
+    <script src="profile.js"></script>
+</body>
+</html>

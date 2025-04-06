@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hotel Booking</title>
+  <link rel="stylesheet" href="h_style.css">
+</head>
+<body>
+  <header>
+    <h1>Book Your Hotel Room</h1>
+    <form id="search-form">
+      <input type="text" id="location" placeholder="Enter Location" required>
+      <input type="date" id="checkin" required>
+      <input type="date" id="checkout" required>
+      <button type="submit">Search Hotels</button>
+    </form>
+  </header>
+
+  <section id="hotels-container"></section>
+
+  <footer>
+    <p>&copy; 2024 Hotel Booking</p>
+  </footer>
+
+  <script src="hotel.js"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+.logo{
+    height: 100%;
+    width: 100%;
+    background:red;
+    color:white;
+}
+.logo2{
+    height: 100%;
+    width: 100%;
+    background:yellow;
+    color:black;
+}
+.footer-group{
+    display: flex;
+    justify-content:space-evenly;
+    height: 100%;
+    width:100%;
+    background-color: brown;
+}
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.footer-section {
+    margin: 10px;
+    width: 200px;
+}
+.footer-section h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #333;
+}
+.footer-section p {
+    color: #555;
+    font-size: 0.9em;
+}
+.footer-buttons {
+    margin-top: 20px;
+}
+.footer-buttons a {
+    text-decoration: none;
+    color: #007bff;
+    margin: 0 15px;
+    font-size: 1em;
+}
+.footer-buttons a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,201 @@
+/* CSS for Weather Page */
+.navbar {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2d9cdb;
+    margin-right: auto;
+    padding-left: 20px;
+}
+
+.navbar .nav-links {
+    display: flex;
+    gap: 20px;
+    margin-right: 40px;
+}
+
+.navbar .nav-links a {
+    text-decoration: none;
+    font-size: 16px;
+    color: #333333;
+    transition: color 0.3s ease;
+}
+
+.navbar .nav-links a:hover {
+    color: #2d9cdb;
+}
+
+/*-----------------  GOOGLE FONTS  -----------------*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;500;600&display=swap');
+
+/*-----------------  VARIABLES  -----------------*/
+:root {
+    /* Colors */ 
+    --orange-color: rgb(246, 99, 53);
+    --dark-color: rgb(27, 31, 41);
+    --border: rgba(255, 255, 255, 0.25);
+    --background: rgba(255, 255, 255, 0.1);
+    --box_shadow: rgba(3, 46, 87, 0.3);
+}
+
+html {
+    font-size: 10px;
+    /* Now 1rem = 10px */
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: url("/Image/weather_ani.gif") no-repeat center center fixed;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    width: 35%;
+    height: auto;
+    background: var(--background);
+    backdrop-filter: blur(0.5rem);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 1rem;
+    padding: 2rem; /* Added padding */
+    box-shadow: 0 1.8rem 3.7rem var(--box_shadow);
+    margin-top: 10rem; /* Adjusted margin */
+}
+
+.error {
+    margin: 4rem 0 5rem 0;
+    color: var(--dark-color);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 2rem;
+    letter-spacing: 0.1rem;
+}
+
+#show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center; /* Added for centering content */
+}
+
+#show h2 {
+    color: var(--dark-color);
+    text-transform: uppercase;
+    letter-spacing: 0.18rem;
+    font-weight: 600;
+    font-size: 2.6rem;
+    margin: 3rem 0 2rem 0;
+}
+
+.weather, .desc {
+    color: var(--dark-color);
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 2rem;
+}
+
+.weather {
+    margin: 1rem 0;
+}
+
+#show img {
+    margin: 2rem 0 0 0;
+    width: 10rem;
+    filter: drop-shadow(0 1.8rem 3.7rem var(--box_shadow));
+}
+
+#show h1 {
+    font-size: 6rem;
+    margin: 2rem 0 2rem 0;
+    line-height: 0;
+    font-weight: 400;
+    color: var(--dark-color);
+}
+
+.temp_container {
+    display: flex;
+    justify-content: center;
+    margin: 3rem 0 5rem 0;
+    text-align: center;
+}
+
+.temp_container div {
+    padding: 1rem 1.5rem;
+}
+
+.temp_container div:first-child {
+    border-right: 0.1rem solid var(--border);
+}
+
+.temp_container .title {
+    font-weight: 600;
+    color: var(--dark-color);
+    font-size: 1.6rem;
+}
+
+.temp_container .temp {
+    font-weight: 600;
+    color: var(--orange-color);
+    font-size: 1.6rem;
+}
+#profileLink {
+    display: none; /* Default to hidden, shown by JS if logged in */
+}
+
+#loginLink {
+    color: blue;
+    font-weight: bold;
+    text-decoration: none;
+    padding-right: 30px;
+}
+
+#loginLink a:hover {
+    background-color: #ff0606;
+}
+.profile-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.profile-icon img {
+    width: 120px;
+    height: 60px;
+    padding-right: 40px;
+}

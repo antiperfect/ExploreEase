@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="i_style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    <title>Home - ExploreEase</title>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="navbar">
+        <div class="logo"><img src="/Image/logo.png" width="100"></div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="weather.html">Weather</a>
+            <a href="traffic.html">Traffic</a>
+            <a href="tourist-spots.html">Tourist Spots</a>
+        </div>
+        <div class="auth-links">
+            <div id="profileLink" class="profile-icon">
+                <img class="profile-icon" src="/Image/profile-icon.png" alt="Profile Image" width="50">
+            </div>
+            <a id="loginLink" href="login.html">Login</a>
+        </div>
+    </div>
+    <div class="container">
+        <h1>Welcome to ExploreEase</h1>
+        <p>Enter your city to get details about weather, traffic, and tourist spots.</p>
+        <input type="text" id="city-input" placeholder="Enter city name">
+        <button id="city-input-btn" onclick="storeCity()">Submit</button>
+    </div>
+    <section class="carousel-container"><center>Places to Visit</center>
+        <div class="carousel" id="carousel">
+            <!-- Carousel items will be dynamically added here -->
+        </div>
+    </section>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>What is Explore Ease?</h3>
+                <p>Explore Ease is a comprehensive travel app designed to simplify travel planning by providing weather, traffic, and tourist information.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Who can benefit from Explore Ease?</h3>
+                <p>Travelers of all kinds looking for convenient and reliable travel information can benefit from Explore Ease.</p>
+            </div>
+            <div class="footer-section">
+                <h3>How does Explore Ease make travel planning easier?</h3>
+                <p>By consolidating all essential travel information in one place, Explore Ease helps users plan their trips efficiently.</p>
+            </div>
+            <div class="footer-section">
+                <h3>What unique services does Explore Ease offer?</h3>
+                <p>Explore Ease offers real-time weather updates, traffic reports, and curated tourist spot recommendations.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Why choose Explore Ease?</h3>
+                <p>With its user-friendly interface and comprehensive features, Explore Ease is the go-to app for a smooth travel experience.</p>
+            </div>
+        </div>
+        <div class="footer-buttons">
+            <a href="about.html">About Us</a>
+            -
+            <a href="help.html">Contact Us</a>
+        </div>
+    </footer>
+    <script src="navbar.js"></script>
+    <script>
+        function storeCity() {
+            const city = document.getElementById('city-input').value;
+            if (city) {
+                localStorage.setItem('cityName', city);
+                alert(`City name "${city}" stored. Navigate to Weather, Traffic, or Tourist Spots pages to see details.`);
+            } else {
+                alert('Please enter a city name.');
+            }
+        }
+        
+        const carouselData = [
+            { name: "Paris", image: "paris.jpg" },
+            { name: "New York", image: "newyork.jpg" },
+            { name: "Tokyo", image: "tokyo.jpg" },
+            { name: "London", image: "london.jpg" },
+            { name: "Sydney", image: "sydney.jpg" },
+            { name: "Amsterdam", image: "Amsterdam.jpg" }
+            // Add more cities and images here
+        ];
+
+        const carousel = document.getElementById('carousel');
+
+        function populateCarousel() {
+            carouselData.forEach(city => {
+                const item = document.createElement('div');
+                item.className = 'carousel-item';
+                item.innerHTML = `
+                    <img src="${city.image}" alt="${city.name}">
+                    <h4>${city.name}</h4>
+                `;
+                carousel.appendChild(item);
+            });
+        }
+
+        function scrollCarousel() {
+            const itemWidth = carousel.querySelector('.carousel-item').offsetWidth + 20; // 20px is the margin-right
+            let scrollAmount = 0;
+
+            function autoScroll() {
+                scrollAmount += itemWidth;
+                if (scrollAmount >= carousel.scrollWidth) {
+                    scrollAmount = 0;
+                }
+                carousel.style.transform = `translateX(-${scrollAmount}px)`;
+            }
+
+            setInterval(autoScroll, 3000); // Scroll every 3 seconds
+        }
+
+        populateCarousel();
+        scrollCarousel();
+    </script>
+    <script src="update-profile-image.js"></script>
+</body>
+</html>
